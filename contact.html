@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · Inkdrop Interactive</title>
+  <meta name="description" content="Get in touch with Inkdrop Interactive about Beanville, Rust Circuit, privacy questions or ideas.">
+  <link rel="canonical" href="https://inkdropinteractive.com/contact.html">
+
+  <link rel="icon" href="/assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="Inkdrop Interactive home">
+        <img src="/assets/logo-horizontal.svg" alt="Inkdrop Interactive" width="201" height="52">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/#games">Games</a>
+        <a href="/#about">About</a>
+        <a href="/contact.html" aria-current="page">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="contact">
+    <div class="wrap">
+      <h1 class="display">Get in touch</h1>
+      <p class="lede">Found a bug, have an idea, or a question about privacy? Send me a message and I’ll read every one.</p>
+
+      <form class="contact-form" id="contact-form" novalidate
+            action="https://docs.google.com/forms/d/e/1FAIpQLScvVOnEWb9wLb6zxOC8epFJmA4cmqQYinZt_GL_dbGDuMdQxw/formResponse"
+            method="POST">
+
+        <div class="field-row">
+          <div class="field">
+            <label for="game">Game</label>
+            <select id="game" name="entry.1667034762" required aria-describedby="game-error">
+              <option value="" selected disabled>Choose a game</option>
+              <option>Beanville</option>
+              <option>Rust Circuit</option>
+            </select>
+            <p class="error" id="game-error"></p>
+          </div>
+
+          <div class="field">
+            <label for="subject">Subject</label>
+            <select id="subject" name="entry.1796553261" required aria-describedby="subject-error">
+              <option value="" selected disabled>Choose a subject</option>
+              <option>Privacy question</option>
+              <option>Bug or improvement idea</option>
+              <option>Other</option>
+            </select>
+            <p class="error" id="subject-error"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="entry.2012282925" type="text" autocomplete="name" required maxlength="100" aria-describedby="name-error">
+          <p class="error" id="name-error"></p>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="entry.1205649566" required maxlength="5000" aria-describedby="message-error"></textarea>
+          <p class="error" id="message-error"></p>
+        </div>
+
+        <div class="hp" aria-hidden="true">
+          <label for="website">Leave this empty</label>
+          <input id="website" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Send message</button>
+          <p class="form-status" id="form-status" role="alert"></p>
+        </div>
+
+        <p class="privacy-note">Messages are stored using Google Forms. See the <a href="/privacy.html">privacy policy</a>.</p>
+      </form>
+
+      <div class="thanks" id="thanks" hidden tabindex="-1">
+        <h2 class="display">Thanks, message sent!</h2>
+        <p>I’ll take a look as soon as I can.</p>
+        <a class="btn btn-outline" href="/">Back to the homepage</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© 2026 Inkdrop Interactive</p>
+      <nav aria-label="Footer">
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      var thanks = document.getElementById('thanks');
+      var button = form.querySelector('button[type="submit"]');
+      var messages = {
+        game: 'Please choose a game.',
+        subject: 'Please choose a subject.',
+        name: 'Please enter your name.',
+        message: 'Please write a message.'
+      };
+
+      // Pre-select from links like /contact.html?game=Rust%20Circuit
+      var params = new URLSearchParams(location.search);
+      ['game', 'subject'].forEach(function (key) {
+        var value = params.get(key);
+        var select = document.getElementById(key);
+        if (value && Array.prototype.some.call(select.options, function (o) { return o.value === value; })) {
+          select.value = value;
+        }
+      });
+
+      function validate() {
+        var firstBad = null;
+        Object.keys(messages).forEach(function (id) {
+          var el = document.getElementById(id);
+          var bad = !el.value.trim();
+          el.setAttribute('aria-invalid', bad ? 'true' : 'false');
+          document.getElementById(id + '-error').textContent = bad ? messages[id] : '';
+          if (bad && !firstBad) firstBad = el;
+        });
+        if (firstBad) firstBad.focus();
+        return !firstBad;
+      }
+
+      form.addEventListener('input', function (e) {
+        if (e.target.getAttribute('aria-invalid') === 'true' && e.target.value.trim()) {
+          e.target.setAttribute('aria-invalid', 'false');
+          document.getElementById(e.target.id + '-error').textContent = '';
+        }
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        status.textContent = '';
+        if (!validate()) return;
+        if (document.getElementById('website').value) return; // bot
+
+        button.disabled = true;
+        button.textContent = 'Sending…';
+        fetch(form.action, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(new FormData(form)) })
+          .then(function () {
+            form.hidden = true;
+            thanks.hidden = false;
+            thanks.focus();
+          })
+          .catch(function () {
+            status.textContent = 'Sorry, your message could not be sent. Please check your connection and try again.';
+            button.disabled = false;
+            button.textContent = 'Send message';
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
