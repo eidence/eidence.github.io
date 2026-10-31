@@ -180,7 +180,7 @@ a:hover { color: var(--accent); }
 .video-facade { position: relative; display: block; color: #fff; }
 .video-facade .media { display: block; }
 .play-overlay {
-  position: absolute; left: 50%; top: 50%; width: 76px; height: 76px; margin: -38px 0 0 -38px;
+  position: absolute; right: 16px; bottom: 16px; width: 56px; height: 56px;
   border-radius: 50%; background: rgba(14, 42, 59, .85); display: flex; align-items: center; justify-content: center;
   box-shadow: 0 8px 24px rgba(0, 0, 0, .3); transition: transform .15s ease, background .15s ease;
 }
