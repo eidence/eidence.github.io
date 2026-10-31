@@ -66,7 +66,13 @@
         <div class="game-grid">
 
           <article class="game-card">
-            <img class="media" src="assets/beanville-feature.webp" width="1024" height="500" alt="Beanville feature graphic" loading="lazy">
+            <a class="video-facade" href="https://youtu.be/VRgTAJ872D0" data-youtube="VRgTAJ872D0" aria-label="Play the Beanville trailer">
+              <img class="media" src="assets/beanville-feature.webp" width="1024" height="500" alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+              </span>
+              <span class="video-label" aria-hidden="true">Watch trailer</span>
+            </a>
             <div class="game-body">
               <span class="tag tag-live">Out now</span>
               <h3 class="display">Beanville</h3>
@@ -124,5 +130,20 @@
       </nav>
     </div>
   </footer>
+  <script>
+    document.querySelectorAll('.video-facade').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var frame = document.createElement('iframe');
+        frame.src = 'https://www.youtube-nocookie.com/embed/' + link.dataset.youtube + '?autoplay=1&rel=0';
+        frame.title = 'Beanville trailer';
+        frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        frame.allowFullscreen = true;
+        frame.className = 'media video-frame';
+        link.replaceWith(frame);
+        frame.focus();
+      });
+    });
+  </script>
 </body>
 </html>
