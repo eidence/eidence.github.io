@@ -1,101 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inkdrop Interactive</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #00B2BC;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-        .container {
-            max-width: 600px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        .tagline {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 3rem;
-        }
-        .games {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 16px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(10px);
-        }
-        .games h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        .game-name {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        .game-desc {
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-        .footer-links {
-            margin-top: 2rem;
-            font-size: 0.95rem;
-            opacity: 0.85;
-        }
-        .footer-links a {
-            color: #fff;
-            text-decoration: underline;
-            margin: 0 0.5rem;
-        }
-        .footer-links a:hover {
-            opacity: 1;
-            text-decoration: none;
-        }
-        .copyright {
-            margin-top: 1.5rem;
-            font-size: 0.85rem;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inkdrop Interactive</title>
+  <meta name="description" content="Inkdrop Interactive is a one-person independent game studio based in Poland. Play Beanville on Google Play.">
+  <link rel="canonical" href="https://inkdropinteractive.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Inkdrop Interactive">
+  <meta property="og:description" content="Where ideas take shape. A one-person independent game studio based in Poland.">
+  <meta property="og:url" content="https://inkdropinteractive.com/">
+  <meta property="og:image" content="https://inkdropinteractive.com/assets/beanville-hero.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #0E2A3B;
+      --ink-soft: #3B4F5C;
+      --muted: #4A5B66;
+      --paper: #FBFAF6;
+      --accent: #007C83;
+      --display: 'Poppins', system-ui, sans-serif;
+      --body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: var(--ink); }
+    a:hover { color: var(--accent); }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .display { font-family: var(--display); font-weight: 800; }
+
+    /* Header */
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 16px; padding-top: 24px; padding-bottom: 24px;
+    }
+    .brand img { height: 52px; width: auto; }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    .site-nav a { padding: 12px 16px; text-decoration: none; font-weight: 500; }
+
+    /* Hero */
+    .hero .wrap {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 48px;
+      padding-top: 48px; padding-bottom: 88px;
+    }
+    .hero-copy { flex: 1 1 420px; min-width: 0; }
+    .eyebrow {
+      margin: 0 0 16px; font-weight: 600; font-size: 14px; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--accent);
+    }
+    .hero h1 { margin: 0 0 20px; font-size: clamp(40px, 6.5vw, 64px); line-height: 1.05; }
+    .hero-lede { margin: 0 0 32px; font-size: 19px; line-height: 1.6; color: var(--ink-soft); max-width: 32em; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px;
+      font-weight: 600; text-decoration: none; border: 2px solid var(--ink); min-height: 48px;
+    }
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn-outline:hover { border-color: var(--accent); }
+    .hero-art { flex: 1 1 460px; min-width: 0; position: relative; margin-bottom: 36px; }
+    .hero-art .key-art {
+      width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 28px;
+      transform: rotate(-2deg); box-shadow: 0 24px 60px rgba(14, 42, 59, .18);
+    }
+    .hero-art .app-icon {
+      position: absolute; right: -8px; bottom: -36px; width: 112px; height: 112px;
+      border-radius: 26px; border: 4px solid #fff; box-shadow: 0 12px 30px rgba(14, 42, 59, .2);
+    }
+
+    /* Games */
+    .games { background: var(--accent); padding: 80px 0; }
+    .games h2 { margin: 0 0 40px; font-size: 44px; color: #fff; }
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+    .game-card { border-radius: 28px; overflow: hidden; display: flex; flex-direction: column; background: #fff; }
+    .game-card .media { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+    .game-body { padding: 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .game-body h3 { margin: 0; font-size: 34px; line-height: 1.1; }
+    .game-body p { margin: 0; line-height: 1.6; color: var(--ink-soft); }
+    .tag { align-self: flex-start; font-weight: 600; font-size: 13px; padding: 6px 12px; border-radius: 999px; }
+    .tag-live { background: #DDF5E6; color: #155B33; }
+    .tag-soon { background: #F2A45A; color: #2A1606; }
+    .game-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 8px; }
+    .play-badge { display: inline-block; border-radius: 10px; }
+    .play-badge img { height: 56px; width: auto; }
+
+    .game-card.dark { background: #1D2228; color: #EDE6DC; }
+    .game-card.dark h3 { color: #fff; }
+    .game-card.dark p { color: #C9BFB2; }
+    .rc-art {
+      position: relative; overflow: hidden; aspect-ratio: 16 / 9; background: #3A1A0A;
+      display: flex; justify-content: center;
+    }
+    .rc-art::before {
+      content: ""; position: absolute; inset: -40px;
+      background: url("assets/rust-circuit-icon.webp") center / cover;
+      filter: blur(28px) brightness(.7);
+    }
+    .rc-art img {
+      position: relative; width: 100%; max-width: 512px; height: 100%;
+      object-fit: cover; object-position: center 15%; box-shadow: 0 0 40px rgba(0, 0, 0, .45);
+    }
+    .soon-label {
+      display: inline-flex; align-items: center; padding: 12px 20px; border-radius: 10px;
+      border: 2px solid #EDE6DC; color: #EDE6DC; font-weight: 600;
+    }
+
+    /* About */
+    .about .wrap {
+      display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start;
+      padding-top: 88px; padding-bottom: 88px;
+    }
+    .about-head { flex: 1 1 300px; display: flex; flex-direction: column; gap: 24px; }
+    .about-head h2 { margin: 0; font-size: 44px; line-height: 1.05; }
+    .about-head img { width: 140px; height: auto; opacity: .9; }
+    .about-body {
+      flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 20px;
+      font-size: 18px; line-height: 1.7; color: var(--ink-soft);
+    }
+    .about-body p { margin: 0; }
+    .about-body blockquote { margin: 12px 0 0; padding: 0; color: var(--ink); }
+    .about-body blockquote p { font-size: 26px; line-height: 1.3; }
+    .about-body blockquote footer { margin-top: 8px; font-size: 15px; color: var(--muted); }
+
+    /* Footer */
+    .site-footer { border-top: 1px solid rgba(14, 42, 59, .12); }
+    .site-footer .wrap {
+      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+      gap: 16px; padding-top: 32px; padding-bottom: 32px;
+    }
+    .site-footer p { margin: 0; font-size: 14px; color: var(--muted); }
+    .site-footer nav { display: flex; flex-wrap: wrap; gap: 4px; }
+    .site-footer nav a { padding: 12px; font-size: 14px; }
+
+    @media (max-width: 600px) {
+      .brand img { height: 40px; }
+      .site-nav a { padding: 12px 10px; }
+      .hero .wrap { padding-top: 24px; }
+      .games h2, .about-head h2 { font-size: 36px; }
+      .game-body h3 { font-size: 28px; }
+      .hero-art .app-icon { width: 84px; height: 84px; border-radius: 20px; right: 0; bottom: -28px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Inkdrop Interactive</h1>
-        <p class="tagline">A small indie studio crafting colourful, casual games.</p>
-
-        <div class="games">
-            <h2>Our Games</h2>
-            <div class="game-name">Beanville</div>
-            <p class="game-desc">
-                A physics-based puzzle adventure. Match colourful beans, trigger chain reactions,
-                and save Beanville from the jellybean monster.
-            </p>
-        </div>
-
-        <div class="footer-links">
-            <a href="/privacy.html">Privacy Policy</a>
-            <span>•</span>
-            <a href="mailto:beanville.contact@gmail.com">Contact</a>
-        </div>
-
-        <p class="copyright">© 2026 Inkdrop Interactive</p>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Inkdrop Interactive home">
+        <img src="assets/logo-horizontal.svg" alt="Inkdrop Interactive" width="201" height="52">
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="#games">Games</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">Independent game studio</p>
+          <h1 class="display">Where ideas take shape</h1>
+          <p class="hero-lede">Inkdrop Interactive is a one-person independent game studio based in Poland. Every game here is something I’ve designed and built myself. Mobile is my focus for now, but I’m looking to branch out to PC.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.inkdropinteractive.beanville">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>
+              Play Beanville
+            </a>
+            <a class="btn btn-outline" href="#games">See all games</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img class="key-art" src="assets/beanville-hero.webp" width="1024" height="576" alt="Beanville title art: five smiling jellybeans in front of rolling green hills">
+          <img class="app-icon" src="assets/beanville-icon.webp" width="512" height="512" alt="Beanville app icon">
+        </div>
+      </div>
+    </section>
+
+    <section class="games" id="games">
+      <div class="wrap">
+        <h2 class="display">Our games</h2>
+        <div class="game-grid">
+
+          <article class="game-card">
+            <img class="media" src="assets/beanville-feature.webp" width="1024" height="500" alt="Beanville feature graphic" loading="lazy">
+            <div class="game-body">
+              <span class="tag tag-live">Out now</span>
+              <h3 class="display">Beanville</h3>
+              <p>A physics-based puzzle adventure. Match colourful beans, trigger chain reactions, and save Beanville from the jellybean monster.</p>
+              <div class="game-actions">
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.inkdropinteractive.beanville">
+                  <img src="assets/google-play-badge.png" width="811" height="241" alt="Get Beanville on Google Play">
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="game-card dark">
+            <div class="rc-art">
+              <img src="assets/rust-circuit-icon.webp" width="512" height="512" alt="Rust Circuit art: a goggled rider on a rusty hover-bike racing through a desert canyon" loading="lazy">
+            </div>
+            <div class="game-body">
+              <span class="tag tag-soon">Coming soon</span>
+              <h3 class="display">Rust Circuit</h3>
+              <p>My next game is in development. More details coming soon.</p>
+              <div class="game-actions">
+                <span class="soon-label">Coming soon to Google Play</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap">
+        <div class="about-head">
+          <h2 class="display">About me</h2>
+          <img src="assets/logo-stacked.svg" alt="" width="140" height="143">
+        </div>
+        <div class="about-body">
+          <p>I’ve been a gamer for most of my life. It’s what first got me interested in computers, and it led to a career in IT that’s now lasted over 20 years. Through all of that I’ve seen games as an art form, a way of telling stories and sharing ideas, except you get to be part of them.</p>
+          <p>When choosing the name Inkdrop, I wanted something that reflected the fact that most of my ideas start out on paper and also the creativity I believe goes into every game. That first drop of ink is where it all begins.</p>
+          <blockquote>
+            <p class="display">“A drop of ink may make a million think.”</p>
+            <footer>Lord Byron</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap">
+      <p>© 2026 Inkdrop Interactive</p>
+      <nav aria-label="Footer">
+        <a href="mailto:beanville.contact@gmail.com">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </nav>
+    </div>
+  </footer>
 </body>
 </html>
