@@ -102,13 +102,8 @@
     .tag-live { background: #DDF5E6; color: #155B33; }
     .tag-soon { background: #F2A45A; color: #2A1606; }
     .game-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: auto; padding-top: 8px; }
-    .play-badge {
-      display: inline-flex; align-items: center; gap: 10px; background: #000; color: #fff;
-      text-decoration: none; padding: 10px 18px; border-radius: 10px; min-height: 48px;
-    }
-    .play-badge:hover { color: #fff; background: #222; }
-    .play-badge small { display: block; font-size: 10px; letter-spacing: .04em; line-height: 1.1; }
-    .play-badge strong { display: block; font-size: 18px; font-weight: 600; line-height: 1.1; }
+    .play-badge { display: inline-block; border-radius: 10px; }
+    .play-badge img { height: 56px; width: auto; }
 
     .game-card.dark { background: #1D2228; color: #EDE6DC; }
     .game-card.dark h3 { color: #fff; }
@@ -219,9 +214,8 @@
               <h3 class="display">Beanville</h3>
               <p>A physics-based puzzle adventure. Match colourful beans, trigger chain reactions, and save Beanville from the jellybean monster.</p>
               <div class="game-actions">
-                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.inkdropinteractive.beanville" aria-label="Get Beanville on Google Play">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>
-                  <span><small>GET IT ON</small><strong>Google Play</strong></span>
+                <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.inkdropinteractive.beanville">
+                  <img src="assets/google-play-badge.png" width="811" height="241" alt="Get Beanville on Google Play">
                 </a>
               </div>
             </div>
