@@ -66,7 +66,7 @@
         <div class="game-grid">
 
           <article class="game-card">
-            <a class="video-facade" href="https://youtu.be/VRgTAJ872D0" data-youtube="VRgTAJ872D0" aria-label="Play the Beanville trailer">
+            <a class="video-facade" href="https://youtu.be/VRgTAJ872D0" data-youtube="VRgTAJ872D0" data-title="Beanville trailer" aria-label="Play the Beanville trailer">
               <img class="media" src="assets/beanville-feature.webp" width="1024" height="500" alt="" loading="lazy">
               <span class="play-overlay" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
@@ -86,9 +86,13 @@
           </article>
 
           <article class="game-card dark">
-            <div class="rc-art">
-              <img src="assets/rust-circuit-icon.webp" width="512" height="512" alt="Rust Circuit art: a goggled rider on a rusty hover-bike racing through a desert canyon" loading="lazy">
-            </div>
+            <a class="video-facade" href="https://youtu.be/3zeoxF6CfpY" data-youtube="3zeoxF6CfpY" data-title="Rust Circuit trailer" aria-label="Play the Rust Circuit trailer">
+              <img class="media" src="assets/rust-circuit-trailer.jpg" width="1024" height="576" alt="" loading="lazy">
+              <span class="play-overlay" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>
+              </span>
+              <span class="video-label" aria-hidden="true">Watch trailer</span>
+            </a>
             <div class="game-body">
               <span class="tag tag-soon">Coming soon</span>
               <h3 class="display">Rust Circuit</h3>
@@ -136,7 +140,7 @@
         e.preventDefault();
         var frame = document.createElement('iframe');
         frame.src = 'https://www.youtube-nocookie.com/embed/' + link.dataset.youtube + '?autoplay=1&rel=0';
-        frame.title = 'Beanville trailer';
+        frame.title = link.dataset.title;
         frame.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
         frame.allowFullscreen = true;
         frame.className = 'media video-frame';
